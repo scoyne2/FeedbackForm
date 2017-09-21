@@ -1,0 +1,538 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+@font-face {
+	font-family: 'Drugs';
+	src: url('fonts/drugs.regular.eot');
+	src: local('☺'), url('fonts/drugs.regular.woff') format('woff'), url('fonts/drugs.regular.ttf') format('truetype'), url('fonts/drugs.regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/*
+plain-rotate(theta) {
+	rads = theta * ($pi / 180)
+	ct = cos(rads)
+	st = sin(rads)
+	transform rotateZ((theta)deg)
+}
+
+truncate(val, prec = 0)
+	unless prec < 0
+		return (floor(val * 10 * prec) / (prec * 10))
+	return (ceil(val * 10 * prec) / (prec * 10))
+
+outline(w = 1px, style = solid, color = green)
+	outline w style color
+
+hex(num)
+	return base-convert(round(num), 16)
+
+//convert to Microsofts filter format
+argb(color)
+	return s('#%s%s%s%s', hex(alpha(color) * 255), hex(red(color)), hex(green(color)), hex(blue(color)))
+
+normalize-brightness(val, scale, max = 255)
+	return ((val / max) * (scale / 1000))
+
+brightness-vector(color)
+	return normalize-brightness(red(color), 299) + normalize-brightness(green(color), 587) + normalize-brightness(blue(color), 114)
+
+//takes a sample and two colors (defaulting to black and white)
+//will select the color that contrasts most with the sample and return it
+contrast(sample, color1 = black, color2 = white)
+	sVec = brightness-vector(sample)
+	cVec1 = abs(sVec - brightness-vector(color1))
+	cVec2 = abs(sVec - brightness-vector(color2))
+	return (cVec1 >= cVec2) ? color1 : color2
+
+//takes a sample and two colors (defaulting to black and white)
+//will select the color that contrasts least with the sample and return it
+contrast-invert(sample, color1 = black, color2 = white)
+	sVec = brightness-vector(sample)
+	cVec1 = abs(sVec - brightness-vector(color1))
+	cVec2 = abs(sVec - brightness-vector(color2))
+	return (cVec1 < cVec2) ? color1 : color2
+
+darken-or-lighten(sample, amount)
+	sVec = brightness-vector(sample)
+	if sVec > 0.5
+		return darken(sample, amount)
+	else
+		return lighten(sample, amount)
+
+//because the !important keyword seems to trip up the parser
+important()
+	return s('%s !important', arguments)
+
+
+gradient-bg()
+	start = shift(arguments)
+	stop = shift(arguments)
+	if start is a 'color' and stop is a 'color'
+		mixed = mix(start, stop, 50)
+		background mixed
+		background s('linear-gradient(0deg, %s 0%, %s 100%)', rgba(start), rgba(stop))
+		ms-gradient(start, stop)
+	else if start == none
+		background-image none
+		filter none
+
+preserve-aspect-ratio()
+	width auto
+	height auto
+
+//quickly constrain (images for example) to the width and height of a parent element
+scale-to-parent(mw = 100%, mh = 100%)
+	max-width mw
+	max-height mh
+	preserve-aspect-ratio()
+
+text-stroke(color = apply-alpha(contrast(@color), 50%))
+	text-shadow 1px 1px 0 color, 1px -1px 0 color, -1px 1px 0 color, -1px -1px 0 color, 1px 0 0 color, 0 1px 0 color, -1px 0 0 color, 0 -1px 0 color, 0 0 4px color
+
+//so that we can easily apply alternate arithmetic if we choose
+font-size(pxls)
+	font-size pxls * 1px//(round(pxls / 13 * 1000) / 1000)%
+
+bold()
+	font-weight 700
+
+not-bold()
+	font-weight 400
+
+underline()
+	text-decoration underline
+
+no-underline()
+	text-decoration none
+
+italic()
+	font-style italic
+
+box-reset()
+	margin 0
+	padding 0
+	border 0
+
+uppercase()
+	text-transform uppercase
+
+lowercase()
+	text-transform lowercase
+
+hwaccel()
+	transform translateZ(0)
+
+block-center(vert = 0)
+	margin vert auto
+
+path(image)
+	return unquote("url('../images/" + image + "')")
+
+bg(image)
+	if image == none
+		background-image none
+	else
+		background-image path(image)
+
+bg-image()
+	background-image arguments
+
+bg-color()
+	background-color arguments
+
+bg-repeat(rpt)
+	if rpt == x
+		background-repeat repeat-x
+	else if rpt == y
+		background-repeat repeat-y
+	else if rpt == both
+		background-repeat repeat
+	else
+		background-repeat no-repeat
+
+bg-pos()
+	background-position arguments
+
+bg-fixed()
+	background-attachment fixed
+
+bg-scroll()
+	background-attachment scroll
+
+offset-origin()
+	position relative
+
+remove()
+	display none
+
+clip-box()
+	overflow hidden
+
+hide(using = false)
+	unless using
+		visibility hidden
+	if using == using-opacity
+		opacity 0
+	if using == using-offset
+		offset-from(window)
+		left -100%
+		top -100%
+		width 1px
+		height 1px
+		clip-box()
+
+//apply to html (selector) to skeletonize the page.
+reveal()
+	*
+		background-image important(none)
+		background-color important(rgba(0, 0, 0, 0.05))
+		//ms-gradient(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.05))
+		outline important(1px solid rgb(255, 0, 0))
+		outline important(1px solid rgba(255, 0, 0, 0.05))
+		color important(rgba(0, 0, 0, 0.5))
+
+	img
+	input
+		opacity important(0.5)
+
+clear-floating-children(using = false)
+	unless using
+		overflow hidden
+	if using == "using-overflow"
+		overflow hidden
+	if using == "using-after"
+		&:after
+			content ' '
+			display block
+			height 0
+			visibility hidden
+			clear both
+
+separate-margins(using = false)
+	unless using
+		overflow hidden
+	if using == "using-border"
+		border 1px solid transparent
+	if using == "using-padding"
+		padding 1px
+	if using == "using-overflow"
+		overflow hidden
+
+apply-alpha(sample, alpha = 50%)
+	return rgba(red(sample), green(sample), blue(sample), alpha)
+
+text-outline(width = 1px, maxIter = 3, color = apply-alpha(contrast(@color), 50%))
+	val = '0 0 ' + width + ' ' + color
+	for i in 2 .. maxIter
+		val = val + ', 0 0 ' + width + ' ' + rgba(color)
+	text-shadow(unquote(val))
+
+*/
+* {
+  box-sizing: border-box; }
+
+a.button {
+  display: block;
+  text-decoration: none; }
+
+a.button,
+input,
+select,
+textarea {
+  background-color: #FFFFFF;
+  border: 1px solid #dce0e0; }
+  a.button:invalid,
+  input:invalid,
+  select:invalid,
+  textarea:invalid {
+    border: 1px solid #dce0e0; }
+  a.button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+	border: 1px solid #8a898a; }
+
+body {
+  color: #635c54;
+  font-family: 'Drugs';
+  line-height: 1.3;
+  background-color: #FFFFFF; }
+  
+.body-bg {
+  background: url("image/bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;}
+  
+.body-bg:before {
+  background-color: rgba(0, 0, 0, .12);
+  content: "";
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1; }
+
+#document {
+  background-color: rgba(144, 154, 167, 0.7);
+  color: #fff;
+  margin: 3em auto;
+  padding: 1.3em 2.3em 2.3em;
+  position: relative;
+  width: 44em; }
+  #document:before {
+    background-image: url("image/design-elements.png");
+    background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+    content: "";
+    display: inline-block;
+    height: 22px;
+    left: 0;
+    position: absolute;
+    top: -22px;
+    width: 100%; }
+
+#logo {
+  padding: 2em 0 }
+  #logo, #logo a {
+    display: block;
+    width: 100%;
+    text-align: center; }
+  #logo a {
+    padding: 1em;
+    font-weight: 700;
+    font-size: 1.5em;
+    color: #EEE0C1;
+    text-shadow: 0 0 0.01em #89713C, 0 0 0.01em #89713C, 0 0 0.01em #89713C, 0 0 0.01em #89713C, 0 0 0.01em #89713C, 0 0 0.01em #89713C, 0 0 0.01em #89713C, 0 0 0.01em #89713C, 0 0 0.01em #89713C, 0 0 0.01em #89713C, 0 0 0.01em #89713C;
+    background-color: #9088A3; }
+  #logo img {
+	display: block;
+	margin: 0 auto;
+	max-width: 400px; }
+
+h1.title {
+    color: #fff;
+    font-family: 'Drugs';
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    line-height: 1.5em;
+    margin-bottom: .5em;
+    text-align: center;
+    text-transform: uppercase; }
+
+#document p {
+  margin-bottom: 1.5em;
+  text-align: center; }
+  #document p:last-child {
+	margin-bottom: 0; }
+
+.input-group {
+  clear: both;
+  margin: 0 auto 1em; }
+  .input-group:last-child {
+    margin-bottom: 0;}
+  .input-group.input-half {
+    float: left;
+    width: 48%; }
+  .input-group.right {
+	clear: none;
+	float: right; }
+  .input-group label {
+    line-height: 1.5;
+    display: block;
+	margin-bottom: .5em; }
+  .input-group a.button,
+  .input-group textarea,
+  .input-group select,
+  .input-group input {
+	background-color: rgba(167, 186, 201, 0.47);
+	border-color: #a7bac9;
+	font-size: 0.85em;
+    padding: 11px 10px;
+    border-radius: 4px;
+	color: #fff; }
+	.input-group a.button:focus,
+	.input-group textarea:focus,
+	.input-group select:focus,
+	.input-group input:focus {
+	  padding: 11px 10px;
+	  border-radius: 4px;
+	  color: #fff; }
+  .input-group a.button,
+  .input-group input,
+  .input-group textarea,
+  .input-group select,
+  .input-group .rating-input {
+    width: 100%; }
+  .input-group a.button,
+  .input-group input[type=button],
+  .input-group input[type=submit] {
+	font-family: 'Drugs';
+    font-size: 16px;
+    font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: #000000;
+	cursor: pointer;
+    background: rgb(220, 205, 212);
+	border: none;
+    box-shadow: 0 -3px rgba(0, 0, 0, 0.1) inset; }
+  .input-group select {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	background-color: rgba(167, 186, 201, 0.47);
+	background-image: url(image/select.png);
+	background-repeat: no-repeat;
+	background-size: 30px 8px;
+	background-position: right center;
+	cursor: pointer;
+	padding-right: 3em; }
+
+.rating-input {
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 4px;
+  position: relative; }
+  .rating-input input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    left: 0;
+    top: 0; }
+  .rating-input label {
+    line-height: 1;
+    font-size: 2.2em;
+    display: inline-block;
+    position: relative;
+    width: 1em;
+    height: 1em;
+    margin: 0;
+    text-align: center; }
+    .rating-input label.nostars {
+      display: none; }
+    .rating-input label:after {
+      content: "★";
+	  color: rgb(220, 205, 212); }
+  .rating-input input[type=radio]:checked + label ~ label:after {
+    content: "☆";
+	color: #a7bac9; }
+  .rating-input.enabled .rating-wrapper:hover input[type=radio] + label ~ label:after {
+    content: "★";
+	color: rgb(220, 205, 212); }
+  .rating-input.enabled .rating-wrapper:hover input[type=radio] + label:hover ~ label:after {
+    content: "☆";
+	color: #a7bac9; }
+  .rating-input.enabled label:hover ~ label:after {
+    content: "☆";
+	color: #a7bac9; }
+  .rating-input.invalid:before {
+    position: absolute;
+    top: 0;
+    line-height: 0;
+    left: 100%;
+    padding: 0;
+    margin: 0;
+    content: ' ';
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border: 1px solid red;
+    border-top: 0;
+    border-right: 0;
+    display: block;
+    transform: rotateZ(45deg) translateY(10px);
+    z-index: 2; }
+  .rating-input.invalid:after {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    background-color: #fff;
+    border: 1px solid red;
+    margin-left: 4px;
+    padding: 10px;
+    width: 11em;
+    content: 'Please select a rating'; }
+	
+@media all and (max-width: 800px) {
+#document {
+  margin: 3em 15px;
+  padding: 1.3em 25px;
+  width: auto; }
+}
+
+@media all and (max-width: 640px) {
+#logo img {
+  padding: 0 15px;
+  width: 100%; }
+h1.title {
+  font-size: 24px;
+  line-height: normal;
+  margin: 0 15px; }
+.input-group {
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%; }
+#document {
+  margin-bottom: 1.5em;
+  padding: 1.3em 15px; }
+.input-group.input-half {
+  float: none;
+  width: 100%; }
+}
+
+/*# sourceMappingURL=main.css.map */
