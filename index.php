@@ -1,14 +1,3 @@
-<?php
-session_start();
-$inputs = @$_SESSION['rating_form_data'];
-
-ini_set('auto_detect_line_endings', '1');
-require_once "vendor/autoload.php";
-
-use League\Csv\Reader;
-
-$csv = Reader::createFromPath(realpath('products.csv'));
-?>
 <!DOCTYPE HTML>
 <html lang="en-US">
 <head>
