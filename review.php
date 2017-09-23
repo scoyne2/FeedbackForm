@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-$cfg = include 'config.php';
-require_once "Request.php";
+$cfg = include 'resources/config.php';
+require_once "resources/request.php";
 
 $validators = array(
 	'name' => function ($a) { return !empty($a);},
@@ -26,7 +26,7 @@ foreach ($validators as $k => $v) {
 }
 
 if (!empty($errors)) {
-	include "errors.php";
+	include "resources/errors.php";
 	exit;
 }
 
