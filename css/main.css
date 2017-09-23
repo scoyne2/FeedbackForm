@@ -3,6 +3,11 @@
    License: none (public domain)
 */
 
+.mainLogo{
+width:25%;
+margin-left:40%;
+}
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
 
 @font-face {
