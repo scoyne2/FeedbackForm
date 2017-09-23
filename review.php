@@ -42,8 +42,8 @@ if (empty($cfg['debug'])) {
 }
 
 if ($_POST['rating'] > 3) {
-	header('Location: hi-thanks.php');
+	header('Location: high-thanks.php');
 	exit;
 }
 
-header('Location: lo-thanks.php');
+header('Location: low-thanks.php');
