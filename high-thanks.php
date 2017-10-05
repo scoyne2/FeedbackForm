@@ -7,13 +7,6 @@ $inputs = @$_SESSION['rating_form_data'];
 
 <?php include 'header.php'; ?>
 
-	<script>
-	fbq('track', 'FeedbackRegistrationGood', {
-	value: 00.00,
-	currency: 'USD'
-	});
-	</script>
-	
 <body class="body-bg">
 	<header>
 		<img src="img/logo.png" class="mainLogo" >
@@ -21,7 +14,7 @@ $inputs = @$_SESSION['rating_form_data'];
     
 	<h1 class="title">Thank You For Your Feedback!</h1>
 	<div id="document">
-		<p>Check your mail for an email from feedback@foxbrim.com which has instructions on how to claim your free product.</p>
+		<p>Check your email for a message from info@5thstreetskin.com which has instructions on how to claim your free product.</p>
 		<p> Our Amazon audience would love to hear about your experience. Just copy your feedback from below, click the 'Share on Amazon' button and paste into the text box that opens in a new tab.</p>
 		<div class="input-group">
 			<label for="#">Your Rating</label>

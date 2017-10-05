@@ -10,7 +10,7 @@
     
 	<h1 class="title">Thank You For Your Feedback!</h1>
 	<div id="document">
-	<p>Share your experience with our products, and we'll send you instruction on how to claim a product of your choice, free of charge!*</p>
+	<p>Share your experience with our products, and we'll send you a bar of our natural charcoal soap with peppermint and tea tree!*</p>
 	<form action="review.php" method="POST">
             <div class="input-group input-half">
                 <label for="name">Name</label>
@@ -21,13 +21,13 @@
                 <input type="email" value="<?= $inputs['email']; ?>" name="email" id="email" required />
             </div>
             <div class="input-group input-half">
-                <label for="product">Product</label>
+                <label for="product">Feedback On</label>
                 <select name="product" id="product"required >
                   <option disabled="disabled" selected="selected"></option>
-                  <option value="charcoal">Acivated Charcoal</option>
-		  <option value="teatree">Charcoal With Peppermint and Tea Tree</option>
-		  <option value="cedar">Charcoal with Cedar</option>
-		  <option value="lavender">Charcoal with Lavender</option>
+                  <option value="B01N0752ER">Acivated Charcoal</option>
+		  <option value="B01N0752ER">Charcoal With Peppermint and Tea Tree</option>
+		  <option value="B01N0752ER">Charcoal with Cedar</option>
+		  <option value="B01N0752ER">Charcoal with Lavender</option>
                 </select>
             </div>
             <div class="input-group input-half right">
